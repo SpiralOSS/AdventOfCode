@@ -2,8 +2,6 @@ open System
 open System.Collections.Generic
 open System.IO
 open System.Text.RegularExpressions
-#r "nuget:FsToolkit.ErrorHandling"
-open FsToolkit.ErrorHandling
 
 type Object =
     | Red

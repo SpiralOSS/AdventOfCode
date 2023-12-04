@@ -2,8 +2,6 @@ open System
 open System.Collections.Generic
 open System.IO
 open System.Text.RegularExpressions
-#r "nuget:FsToolkit.ErrorHandling"
-open FsToolkit.ErrorHandling
 
 type Object =
     | Red
@@ -21,10 +19,6 @@ let (|Draw|) (draw:string) =
         | _ -> None
     let count = int rmatch.Groups["Count"].Value
     Draw (object, count)
-
-// GAME
-// ROUNDS (DRAW list)
-// DRAWS (Object * count)
 
 let getRounds (gameString:string) =
     let mins = Dictionary<_,_> ()
