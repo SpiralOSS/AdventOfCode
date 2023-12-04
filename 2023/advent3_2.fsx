@@ -6,7 +6,7 @@ open System.Text.RegularExpressions
 let neighbor_gear = Dictionary<_,_>()
 let gear_numbers = Dictionary<_,_>()
 
-File.ReadAllLines ($"__SOURCE_DIRECTORY__/sample3.txt")
+File.ReadAllLines ($"{__SOURCE_DIRECTORY__}/sample3.txt")
 |> Seq.mapi (fun row line ->
     line.ToCharArray ()
     |> Seq.mapi (fun col chr ->
@@ -38,7 +38,7 @@ let updateGears number (row:int,startCol) =
         gear_numbers[(row,col)] <- number :: gear_numbers[(row,col)] 
         )
 
-File.ReadAllLines ($"__SOURCE_DIRECTORY__/sample3.txt")
+File.ReadAllLines ($"{__SOURCE_DIRECTORY__}/sample3.txt")
 |> Seq.mapi (fun row line ->
     Regex.Matches(line, "(?<Number>\d+)")
     |> Seq.iter (fun mm -> updateGears (int mm.Groups["Number"].Value) (row, mm.Groups["Number"].Index))
@@ -53,3 +53,5 @@ let out =
         ||> Seq.fold (fun acc num -> acc * num)
         )
     |> Seq.sum
+
+printfn $"{out}"

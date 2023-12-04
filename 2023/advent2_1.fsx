@@ -54,7 +54,7 @@ let validateRound (round:(Object*int) list) =
     |> Seq.forall id
 
 let out =
-    File.ReadAllLines ($"__SOURCE_DIRECTORY__/sample2.txt")
+    File.ReadAllLines ($"{__SOURCE_DIRECTORY__}/sample2.txt")
     |> Seq.map (fun line -> line.Substring(5).Split ":")
     |> Seq.map (fun parts ->
         { id = int parts[0]
@@ -62,3 +62,5 @@ let out =
         )
     |> Seq.filter (fun game -> game.rounds |> Seq.forall validateRound)
     |> Seq.sumBy (fun game -> game.id)
+
+printfn $"{out}"

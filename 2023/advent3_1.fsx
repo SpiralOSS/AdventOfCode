@@ -4,7 +4,7 @@ open System.IO
 open System.Text.RegularExpressions
 
 let symbolMap' =
-    File.ReadAllLines ($"__SOURCE_DIRECTORY__/sample3.txt")
+    File.ReadAllLines ($"{__SOURCE_DIRECTORY__}/sample3.txt")
     |> Seq.mapi (fun row line ->
         line.ReplaceLineEndings("").ToCharArray ()
         |> Seq.mapi (fun col chr ->
@@ -31,8 +31,8 @@ let numberIsTouching symbolMap number (row,startCol) =
         Set.contains (row,col) symbolMap 
         )
 
-let numbers =
-    File.ReadAllLines ($"__SOURCE_DIRECTORY__/sample3.txt")
+let out =
+    File.ReadAllLines ($"{__SOURCE_DIRECTORY__}/sample3.txt")
     |> Seq.mapi (fun row line ->
         Regex.Matches(line, "(?<Number>\d+)")
         |> Seq.filter (fun mm -> numberIsTouching symbolMap (int mm.Groups["Number"].Value) (row, mm.Groups["Number"].Index))
@@ -44,4 +44,4 @@ let numbers =
     |> Seq.concat
     |> Seq.sum
     
-// Too high: 544638
+printfn $"{out}"

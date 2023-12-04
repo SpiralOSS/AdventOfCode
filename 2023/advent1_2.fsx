@@ -57,7 +57,10 @@ let parseLine (line:string) : int =
     let (first, last) = (chars |> Array.head, chars |> Array.rev |> Array.head)
     Int32.Parse (first.ToString()) * 10 + Int32.Parse(last.ToString())
 
-File.ReadAllLines ($"__SOURCE_DIRECTORY__/sample1.txt")
-|> Seq.map replaceAll
-|> Seq.map parseLine
-|> Seq.sum
+let out =
+    File.ReadAllLines ($"{__SOURCE_DIRECTORY__}/sample1.txt")
+    |> Seq.map replaceAll
+    |> Seq.map parseLine
+    |> Seq.sum
+
+printfn $"{out}"

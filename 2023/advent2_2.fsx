@@ -44,7 +44,7 @@ type Game =
       mins: (Object*int) seq }
 
 let out =
-    File.ReadAllLines ($"__SOURCE_DIRECTORY__/sample2.txt")
+    File.ReadAllLines ($"{__SOURCE_DIRECTORY__}/sample2.txt")
     |> Seq.map (fun line -> line.Substring(5).Split ":")
     |> Seq.map (fun parts ->
         { id = int parts[0]
@@ -54,3 +54,5 @@ let out =
         (1, (game.mins |> Seq.map snd)) ||> Seq.fold (fun acc num -> acc * num)
         )
     |> Seq.sum
+
+printfn $"{out}"
